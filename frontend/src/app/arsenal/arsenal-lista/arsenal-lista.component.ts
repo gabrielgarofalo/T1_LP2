@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Arsenal } from '../arsenal.model';
 
 @Component({
   selector: 'app-arsenal-lista',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ArsenalListaComponent implements OnInit {
 
   @Input()
-  arsenal = [
+  arsenal: Arsenal[] = [
     //  {
     //   tipo: "Terrestre",
     //   nome: "Soldados",
