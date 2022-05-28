@@ -1,57 +1,71 @@
 <mat-card>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Digite o Tipo</mat-label>
-        <input
-            matInput 
-            type="text"
-            [(ngModel)]="tipo">
-        <button
-            *ngIf="tipo"
-            matSuffix
-            mat-icon-button
-            (click)="tipo=''">
-            <mat-icon>
-                close
-            </mat-icon>
-        </button>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Digite o Nome</mat-label>
-        <input 
-            matInput
-            type="text"
-            [(ngModel)]="nome">
-        <button
-            *ngIf="nome"
-            matSuffix
-            mat-icon-button
-            (click)="nome=''">
-            <mat-icon>
-                close
-            </mat-icon>
-        </button>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Digite a Quantidade</mat-label>
+    <form (submit)="onInserirArsenal(arsenalForm)" #arsenalForm="ngForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Digite o Tipo</mat-label>
+            <input
+                matInput 
+                type="text"
+                ngModel
+                name="tipo"
+                required
+                #tipoInput>
+            <button
+                *ngIf="tipoInput.value"
+                matSuffix
+                mat-icon-button
+                (click)="tipoInput.value=''">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+            <mat-error>"Digite o tipo!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Digite o Nome</mat-label>
             <input 
-            matInput
-            type="number"
-            [(ngModel)]="quantidade">
+                matInput
+                type="text"
+                ngModel
+                name="nome"
+                required
+                #nomeInput>
+            <button
+                *ngIf="nomeInput.value"
+                matSuffix
+                mat-icon-button
+                (click)="nomeInput.value=''">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+            <mat-error>"Digite o nome!</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Digite a Quantidade</mat-label>
+                <input 
+                matInput
+                type="number"
+                ngModel
+                name="quantidade"
+                required
+                #quantidadeInput>
+            <button
+                *ngIf="quantidadeInput.value"
+                matSuffix
+                mat-icon-button
+                (click)="quantidadeInput.value=null">
+                <mat-icon>
+                    close
+                </mat-icon>
+            </button>
+            <mat-error>"Digite a quantidade!</mat-error>
+        </mat-form-field>
         <button
-            *ngIf="quantidade"
-            matSuffix
-            mat-icon-button
-            (click)="quantidade=null">
-            <mat-icon>
-                close
-            </mat-icon>
+            mat-raised-button
+            color="primary">
+            Inserir no Arsenal
         </button>
-    </mat-form-field>
-    <button
-        mat-raised-button
-        color="primary" 
-        (click)="onInserirArsenal()">Inserir no Arsenal
-    </button>
+    </form>
 
 </mat-card>

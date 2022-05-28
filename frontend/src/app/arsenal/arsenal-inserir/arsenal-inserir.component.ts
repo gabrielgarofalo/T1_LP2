@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Arsenal } from '../arsenal.model';
 
 @Component({
@@ -15,11 +16,12 @@ export class ArsenalInserirComponent{
   nome: string
   quantidade: number
 
-  onInserirArsenal(){
+  onInserirArsenal(form: NgForm){
+    if(form.invalid) return
     const item: Arsenal = {
-      tipo: this.tipo,
-      nome: this.nome,
-      quantidade: this.quantidade
+      tipo: form.value.tipo,
+      nome: form.value.nome,
+      quantidade: form.value.quantidade
     }
 
     this.itemAdicionado.emit(item)
