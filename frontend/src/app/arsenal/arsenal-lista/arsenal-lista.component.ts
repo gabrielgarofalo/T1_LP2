@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-arsenal-lista',
@@ -7,17 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArsenalListaComponent implements OnInit {
 
+  @Input()
   arsenal = [
-    {
-      tipo: "Terrestre",
-      nome: "Soldados",
-      quantidade: 5000
-    },
-    {
-      tipo: "Aquático",
-      nome: "Subamrino",
-      quantidade: 50
-    } 
+    //  {
+    //   tipo: "Terrestre",
+    //   nome: "Soldados",
+    //   quantidade: 5000
+    // },
+    // {
+    //   tipo: "Aquático",
+    //   nome: "Subamrino",
+    //   quantidade: 50
+    // } 
   ]
 
   constructor() { }

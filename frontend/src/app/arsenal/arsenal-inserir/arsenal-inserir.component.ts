@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-arsenal-inserir',
@@ -7,12 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArsenalInserirComponent{
 
+  @Output()
+  itemAdicionado = new EventEmitter();
+
   tipo: string
   nome: string
   quantidade: number
 
   onInserirArsenal(){
-    console.log("Inserindo no Arsenal...")
+    const item = {
+      tipo: this.tipo,
+      nome: this.nome,
+      quantidade: this.quantidade
+    }
+
+    this.itemAdicionado.emit(item)
   }
 
 }
