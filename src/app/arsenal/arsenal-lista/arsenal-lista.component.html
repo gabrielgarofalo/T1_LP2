@@ -1,8 +1,10 @@
 <mat-accordion>
     <mat-expansion-panel *ngFor="let item of arsenal">
-        <mat-expansion-panel-header>{{item.tipo}}</mat-expansion-panel-header>
-        <p>{{item.nome}}</p>
-        <p>{{item.quantidade}}</p>
+        <mat-expansion-panel-header>Nome da Tropa: {{item.nome}}</mat-expansion-panel-header>
+        <p>Tipo: {{item.tipo}}</p>
+        <p>Quantidade: {{item.quantidade}}</p>
+        <mat-action-row>
+        </mat-action-row>
     </mat-expansion-panel>
 </mat-accordion>
 
