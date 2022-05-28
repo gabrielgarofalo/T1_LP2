@@ -16,6 +16,8 @@ import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.component'
 import { ArsenalService } from './arsenal/arsenal.service';
 
+import { HttpClientModule} from '@angular/common/http'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { ArsenalService } from './arsenal/arsenal.service';
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
-    MatToolbarModule
+    MatToolbarModule,
+    HttpClientModule
   ],
   providers: [ArsenalService],
   bootstrap: [AppComponent]

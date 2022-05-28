@@ -17,11 +17,13 @@ export class ArsenalListaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.arsenal = this.arsenalService.getArsenal()
-    this.arsenalService.getListaArsenalAtualizada().subscribe((arsenal: Arsenal[]) => {
-      this.arsenal = arsenal
-  })
-  }
+    this.arsenalService.getArsenal();
+    this.arsenalSubscription = this.arsenalService
+    .getListaArsenalAtualizada()
+    .subscribe((arsenal: Arsenal[]) => {
+    this.arsenal = arsenal;
+    });
+    }
 
   ngOnDestroy(): void {
     this.arsenalSubscription.unsubscribe()
