@@ -7,21 +7,31 @@ import { AppComponent } from './app.component';
 import { ArsenalInserirComponent } from './arsenal/arsenal-inserir/arsenal-inserir.component';
 
 import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
+import { MatExpansionModule } from '@angular/material/expansion'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { CabecalhoComponent } from './cabecalho/cabecalho.component';
+import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArsenalInserirComponent
+    ArsenalInserirComponent,
+    CabecalhoComponent,
+    ArsenalListaComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

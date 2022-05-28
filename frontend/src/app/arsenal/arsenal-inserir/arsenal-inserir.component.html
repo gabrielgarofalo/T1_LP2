@@ -1,29 +1,57 @@
-<h2>Inserção de itens no arsenal</h2>
-<mat-form-field appearance="fill">
-    <mat-label>Digite o Tipo</mat-label>
-    <input
-        matInput 
-        type="text"
-        [(ngModel)]="tipo">
+<mat-card>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Digite o Tipo</mat-label>
+        <input
+            matInput 
+            type="text"
+            [(ngModel)]="tipo">
+        <button
+            *ngIf="tipo"
+            matSuffix
+            mat-icon-button
+            (click)="tipo=''">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Digite o Nome</mat-label>
+        <input 
+            matInput
+            type="text"
+            [(ngModel)]="nome">
+        <button
+            *ngIf="nome"
+            matSuffix
+            mat-icon-button
+            (click)="nome=''">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Digite a Quantidade</mat-label>
+            <input 
+            matInput
+            type="number"
+            [(ngModel)]="quantidade">
+        <button
+            *ngIf="quantidade"
+            matSuffix
+            mat-icon-button
+            (click)="quantidade=null">
+            <mat-icon>
+                close
+            </mat-icon>
+        </button>
+    </mat-form-field>
     <button
-        *ngIf="tipo"
-        matSuffix
-        mat-icon-button
-        (click)="tipo=''">
-        <mat-icon>
-            close
-        </mat-icon>
+        mat-raised-button
+        color="primary" 
+        (click)="onInserirArsenal()">Inserir no Arsenal
     </button>
-</mat-form-field>
-<hr>
-<input 
-    type="text" 
-    placeholder="Digite o nome"
-    [(ngModel)]="nome">
-<hr>
-<input 
-    type="number" 
-    placeholder="Digite a quantidade"
-    [(ngModel)]="quantidade">
-<hr>
-<button (click)="onInserirArsenal()">Inserir no Arsenal</button>
+
+</mat-card>
