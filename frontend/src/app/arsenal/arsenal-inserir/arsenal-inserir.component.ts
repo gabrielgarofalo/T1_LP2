@@ -1,6 +1,8 @@
+import { TemplateDefinitionBuilder } from '@angular/compiler/src/render3/view/template';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Arsenal } from '../arsenal.model';
+import { ArsenalService } from '../arsenal.service';
 
 @Component({
   selector: 'app-arsenal-inserir',
@@ -9,22 +11,17 @@ import { Arsenal } from '../arsenal.model';
 })
 export class ArsenalInserirComponent{
 
-  @Output()
-  itemAdicionado = new EventEmitter <Arsenal>();
+  constructor(private arsenalService: ArsenalService){
 
-  tipo: string
-  nome: string
-  quantidade: number
+  }
 
   onInserirArsenal(form: NgForm){
     if(form.invalid) return
-    const item: Arsenal = {
-      tipo: form.value.tipo,
-      nome: form.value.nome,
-      quantidade: form.value.quantidade
-    }
-
-    this.itemAdicionado.emit(item)
+    this.arsenalService.adicionarArsenal(
+      form.value.tipo,
+      form.value.nome,
+      form.value.quantidade
+    )
   }
 
 }

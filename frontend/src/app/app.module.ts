@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.component'
+import { ArsenalService } from './arsenal/arsenal.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.com
     MatInputModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [ArsenalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

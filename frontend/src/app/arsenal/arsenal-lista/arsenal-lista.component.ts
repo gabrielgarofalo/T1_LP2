@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Arsenal } from '../arsenal.model';
+import { ArsenalService } from '../arsenal.service';
 
 @Component({
   selector: 'app-arsenal-lista',
@@ -8,23 +9,14 @@ import { Arsenal } from '../arsenal.model';
 })
 export class ArsenalListaComponent implements OnInit {
 
-  @Input()
-  arsenal: Arsenal[] = [
-    //  {
-    //   tipo: "Terrestre",
-    //   nome: "Soldados",
-    //   quantidade: 5000
-    // },
-    // {
-    //   tipo: "Aquático",
-    //   nome: "Subamrino",
-    //   quantidade: 50
-    // } 
-  ]
+  arsenal: Arsenal[] = []
 
-  constructor() { }
+  constructor(private arsenalService: ArsenalService) { 
+  
+  }
 
   ngOnInit(): void {
+    this.arsenal = this.arsenalService.getArsenal()
   }
 
 }
