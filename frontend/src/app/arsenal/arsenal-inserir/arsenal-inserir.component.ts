@@ -22,6 +22,7 @@ export class ArsenalInserirComponent{
       form.value.nome,
       form.value.quantidade
     )
+    form.resetForm();
   }
 
 }
