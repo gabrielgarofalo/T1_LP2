@@ -36,7 +36,27 @@ export class ArsenalService{
         
     }
 
+    removerArsenal(v: Arsenal[]): void{
+        this.httpClient.post<{mensagem: string, arsenal: []}> ('http://localhost:3000/api/arsenal/atualizar',v).subscribe(
+            (dados) => {
+                this.arsenal = dados.arsenal
+                this.listaArsenalAtualizada.next([...this.arsenal]);          
+         }
+         )
+    }
+
     getListaArsenalAtualizada(){
         return this.listaArsenalAtualizada.asObservable()
+    }
+
+    getListaForDelete(){
+        this.httpClient.get <{mensagem: string, arsenal:
+            Arsenal[]}>('http://localhost:3000/api/arsenal').subscribe(
+             (dados) => {
+             this.arsenal = dados.arsenal;
+             this.listaArsenalAtualizada.next([...this.arsenal]);
+             }
+        )
+        return this.arsenal
     }
 }

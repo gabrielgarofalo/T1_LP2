@@ -11,19 +11,22 @@ import { MatCardModule } from '@angular/material/card'
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
+import { MatTableModule } from '@angular/material/table' 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.component'
 import { ArsenalService } from './arsenal/arsenal.service';
 
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule} from '@angular/common/http';
+import { ArsenalTabelaComponent } from './arsenal/arsenal-tabela/arsenal-tabela.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ArsenalInserirComponent,
     CabecalhoComponent,
-    ArsenalListaComponent
+    ArsenalListaComponent,
+    ArsenalTabelaComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -34,6 +37,7 @@ import { HttpClientModule} from '@angular/common/http'
     MatExpansionModule,
     MatIconModule,
     MatInputModule,
+    MatTableModule,
     MatToolbarModule,
     HttpClientModule
   ],

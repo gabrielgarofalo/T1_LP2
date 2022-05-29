@@ -1,0 +1,19 @@
+:host(){
+  margin-top: 1rem;
+}
+
+table {
+    width: 100%;
+    display: flex;
+}
+
+mat-header-cell{
+  justify-content: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+mat-cell{
+  justify-content: center;
+  font-size: medium;
+}

@@ -4,7 +4,7 @@ const bodyParser = require ('body-parser');
 
 app.use (bodyParser.json());
 
-const arsenal = []
+let arsenal = []
 id = -1;
 
 app.use ((req, res, next) => {
@@ -24,6 +24,12 @@ app.post ('/api/arsenal', (req, res, next) => {
         id, tipo, nome, quantidade
     })
     res.status(201).json({mensagem: 'Item inserido no arsenal'})
+});
+
+app.post ('/api/arsenal/atualizar', (req, res, next) => {
+    var item = req.body;
+    arsenal = item
+    res.status(201).json({mensagem: 'Arsenal Atuaizado', arsenal:arsenal})
 });
    
    

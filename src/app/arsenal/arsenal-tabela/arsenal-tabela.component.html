@@ -1,0 +1,20 @@
+<mat-table #table [dataSource]="dataSource" matSort *ngIf="arsenal.length > 0">
+    <ng-container matColumnDef="{{column.id}}" *ngFor="let column of columnNames">
+        <ng-container *ngIf="column.id !== 'acoes' ">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{column.value}}</mat-header-cell>
+            <mat-cell *matCellDef="let arsenal"> {{arsenal[column.id]}}</mat-cell>
+        </ng-container>
+        <ng-container *ngIf="column.id === 'acoes' ">
+            <mat-header-cell *matHeaderCellDef> {{ column.value }} </mat-header-cell>
+            <mat-cell *matCellDef="let arsenal">
+                <button mat-button color="primary">EDITAR</button>
+                <button (click)="onRemoverArsenal(arsenal)" mat-button color="warn">REMOVER</button>
+            </mat-cell>
+        </ng-container>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let arsenal; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+  <p *ngIf="arsenal.length <= 0" class="mat-body-1" style="text-align: center">Nenhum item no Arsenal</p>
