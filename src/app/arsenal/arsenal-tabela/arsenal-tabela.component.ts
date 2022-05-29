@@ -13,13 +13,13 @@ import {MatTableDataSource} from '@angular/material/table';
 
 
 export class ArsenalTabelaComponent implements OnInit, OnDestroy {
-
   arsenal: Arsenal[] = []
   private arsenalSubscription: Subscription
   constructor(private arsenalService: ArsenalService) { 
   }
   dataSource;
   displayedColumns = [];
+  isEditable = false;
 
   columnNames = [{
     id: 'tipo',
@@ -66,6 +66,19 @@ export class ArsenalTabelaComponent implements OnInit, OnDestroy {
     var nova_lista = lista_atual.filter(i => i.nome != item.nome);
     console.log(nova_lista)
     this.arsenalService.removerArsenal(nova_lista)
+  }
+
+  liberarEdicao(e, i){
+    this.isEditable = true;
+    console.log(this.isEditable)
+    console.log(i)
+    console.log(e)
+  }
+
+  cancelarEdicao(e, i){
+    this.isEditable = false;
+    console.log(i)
+    console.log(e)
   }
 }
 
