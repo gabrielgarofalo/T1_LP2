@@ -60,12 +60,7 @@ export class ArsenalTabelaComponent implements OnInit, OnDestroy {
 
   onRemoverArsenal(item){
     console.log(item.nome)
-    console.log("lista")
-    const lista_atual = this.arsenalService.getListaForDelete()
-    console.log(lista_atual)
-    var nova_lista = lista_atual.filter(i => i.nome != item.nome);
-    console.log(nova_lista)
-    this.arsenalService.removerArsenal(nova_lista)
+    this.arsenalService.removerArsenal(item.nome)
   }
 
   liberarEdicao(e, i){
