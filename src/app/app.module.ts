@@ -14,7 +14,6 @@ import { MatInputModule } from '@angular/material/input'
 import { MatTableModule } from '@angular/material/table' 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
-import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.component'
 import { ArsenalService } from './arsenal/arsenal.service';
 
 import { HttpClientModule} from '@angular/common/http';
@@ -27,7 +26,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AppComponent,
     ArsenalInserirComponent,
     CabecalhoComponent,
-    ArsenalListaComponent,
     ArsenalTabelaComponent,
     DialogOverviewExampleDialog
   ],
