@@ -40,7 +40,7 @@ export class ArsenalService{
 
     removerArsenal(nome: string): void{
         console.log(nome)
-        this.httpClient.post<{mensagem: string, arsenal: []}> ('http://localhost:3000/api/arsenal/remover',{nome}).subscribe(
+        this.httpClient.delete<{mensagem: string, arsenal: []}> (`http://localhost:3000/api/arsenal/${nome}`).subscribe(
             (dados) => {
                 this.arsenal = dados.arsenal
                 this.listaArsenalAtualizada.next([...this.arsenal]);          
@@ -49,7 +49,7 @@ export class ArsenalService{
     }
 
     atualizarArsenal(nome: string, quantidade:number): void{
-        this.httpClient.post<{mensagem: string, arsenal: []}> ('http://localhost:3000/api/arsenal/alterar',{nome, quantidade}).subscribe(
+        this.httpClient.put<{mensagem: string, arsenal: []}> ('http://localhost:3000/api/arsenal/alterar',{nome, quantidade}).subscribe(
             (dados) => {
                 this.arsenal = dados.arsenal
                 this.listaArsenalAtualizada.next([...this.arsenal]);          
