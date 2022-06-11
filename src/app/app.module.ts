@@ -20,6 +20,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { ArsenalTabelaComponent, DialogOverviewExampleDialog } from './arsenal/arsenal-tabela/arsenal-tabela.component'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatTableModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [ArsenalService],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { Arsenal } from "./arsenal.model";
 import { Subject } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { NotificationService } from "../notificar-service";
 
 @Injectable({ providedIn: 'root' })
 export class ArsenalService{
@@ -9,7 +10,7 @@ export class ArsenalService{
     private listaArsenalAtualizada = new Subject <Arsenal[]>();
 
 
-    constructor (private httpClient: HttpClient){
+    constructor (private httpClient: HttpClient, private notifyService : NotificationService){
     }
 
 
@@ -29,6 +30,9 @@ export class ArsenalService{
         }
         this.httpClient.post<{mensagem: string, arsenal: []}> ('http://localhost:3000/api/arsenal',item).subscribe(
             (dados) => {
+            this.notifyService.showSuccess(dados.mensagem)
+            
+            console.log(dados)
             console.log(dados.mensagem)
             console.log(dados.arsenal)
             this.arsenal = dados.arsenal

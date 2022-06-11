@@ -24,15 +24,18 @@ app.use (bodyParser.json());
 app.use (cors())
 
 app.post ('/api/arsenal', (req, res, next) => {
-    const item = req.body;
-    Arsenal.find({'nome':`${item.nome}`}).then((list_find) =>
+    var item = req.body;
+    tipo = item.tipo.toUpperCase().trim()
+    nome = item.nome.toUpperCase().trim()
+    quantidade = item.quantidade
+    Arsenal.find({'nome':`${nome}`}).then((list_find) =>
     {
         console.log(list_find)
         if (list_find.length === 0){
             const arsenal = new Arsenal({
-                tipo: item.tipo.toUpperCase().trim(),
-                nome: item.nome.toUpperCase().trim(),
-                quantidade: item.quantidade
+                tipo: tipo,
+                nome: nome,
+                quantidade: quantidade
                 })
             console.log (arsenal);
             arsenal.save().then(() => {
