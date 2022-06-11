@@ -1,9 +1,18 @@
+require('dotenv').config()
 const express = require ('express');
 const app = express();
 const bodyParser = require ('body-parser');
 const mongoose = require ('mongoose');
 const Arsenal = require ('./models/arsenal');
-mongoose.connect("mongodb+srv://mongo_arsenal:mongo_arsenal@cluster-t1-lp2.nsr9ne2.mongodb.net/?retryWrites=true&w=majority")
+const cors = require('cors')
+const {
+    MONGODB_USER,
+    MONGODB_PASSWORD,
+    MONGODB_CLUSTER,
+    MONGODB_HOST,
+    MONGODB_DATABASE
+  } = process.env
+mongoose.connect(`mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.${MONGODB_HOST}.mongodb.net/${MONGODB_DATABASE}?retryWrites=true&w=majority`)
 .then(() => {
     console.log ("Conexão OK")
    }).catch(() => {
@@ -12,12 +21,7 @@ mongoose.connect("mongodb+srv://mongo_arsenal:mongo_arsenal@cluster-t1-lp2.nsr9n
    
 app.use (bodyParser.json());
 
-app.use ((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type,Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE,OPTIONS');
-    next();
-   });
+app.use (cors())
 
 app.post ('/api/arsenal', (req, res, next) => {
     const item = req.body;
@@ -26,8 +30,8 @@ app.post ('/api/arsenal', (req, res, next) => {
         console.log(list_find)
         if (list_find.length === 0){
             const arsenal = new Arsenal({
-                tipo: item.tipo.toUpperCase(),
-                nome: item.nome.toUpperCase(),
+                tipo: item.tipo.toUpperCase().trim(),
+                nome: item.nome.toUpperCase().trim(),
                 quantidade: item.quantidade
                 })
             console.log (arsenal);

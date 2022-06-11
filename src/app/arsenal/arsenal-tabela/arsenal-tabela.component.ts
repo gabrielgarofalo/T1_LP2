@@ -64,19 +64,6 @@ export class ArsenalTabelaComponent implements OnInit, OnDestroy {
     this.arsenalService.removerArsenal(item.nome)
   }
 
-  liberarEdicao(e, i){
-    this.isEditable = true;
-    console.log(this.isEditable)
-    console.log(i)
-    console.log(e)
-  }
-
-  cancelarEdicao(e, i){
-    this.isEditable = false;
-    console.log(i)
-    console.log(e)
-  }
-
   onAtualizarArsenal(item){
     this.arsenalService.atualizarArsenal(item.nome, item
       .quantidade)

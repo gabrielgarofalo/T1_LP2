@@ -7,10 +7,8 @@
         <ng-container *ngIf="column.id === 'acoes' ">
             <mat-header-cell *matHeaderCellDef> {{ column.value }} </mat-header-cell>
             <mat-cell *matCellDef="let arsenal, index as i">
-                <button (click)="openDialog(arsenal)" mat-button *ngIf="!isEditable" color="primary">EDITAR</button>
-                <button mat-button *ngIf="isEditable" color="primary">SALVAR</button>
-                <button (click)="cancelarEdicao($event, i)"mat-button *ngIf="isEditable" color="warn">CANCELAR</button>
-                <button (click)="onRemoverArsenal(arsenal)" mat-button *ngIf="!isEditable" color="warn">REMOVER</button>
+                <button (click)="openDialog(arsenal)" mat-button color="primary">EDITAR</button>
+                <button (click)="onRemoverArsenal(arsenal)" mat-button color="warn">REMOVER</button>
             </mat-cell>
         </ng-container>
     </ng-container>
