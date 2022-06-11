@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+  <p>Qual é a nova quantidade da tropa: {{data.nome}}?</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Quantidade</mat-label>
+    <input matInput type="number" required #novaQuantidade [(ngModel)]="data.quantidade">
+    <mat-error>"Digite a nova quantidade!</mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Salvar</button>
+</div>

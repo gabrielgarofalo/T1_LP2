@@ -51,7 +51,15 @@ app.post ('/api/arsenal/remover', (req, res, next) => {
         )
     })
 });
-   
+
+app.post ('/api/arsenal/alterar', (req, res, next) => {
+    var item = req.body;
+    Arsenal.updateOne( { nome: `${item.nome}` }, { quantidade: `${item.quantidade}` }).then(() => {
+        Arsenal.find().then((arsenal) => 
+        res.status(201).json({mensagem: 'Arsenal Atualizado', arsenal:arsenal})
+        )
+    })
+});   
    
 app.get('/api/arsenal', (req, res, next) => {
     Arsenal.find().then(item => {

@@ -18,7 +18,9 @@ import { ArsenalListaComponent } from './arsenal/arsenal-lista/arsenal-lista.com
 import { ArsenalService } from './arsenal/arsenal.service';
 
 import { HttpClientModule} from '@angular/common/http';
-import { ArsenalTabelaComponent } from './arsenal/arsenal-tabela/arsenal-tabela.component'
+import { ArsenalTabelaComponent, DialogOverviewExampleDialog } from './arsenal/arsenal-tabela/arsenal-tabela.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ArsenalTabelaComponent } from './arsenal/arsenal-tabela/arsenal-tabela.
     ArsenalInserirComponent,
     CabecalhoComponent,
     ArsenalListaComponent,
-    ArsenalTabelaComponent
+    ArsenalTabelaComponent,
+    DialogOverviewExampleDialog
   ],
   imports: [
     BrowserAnimationsModule,
@@ -34,7 +37,9 @@ import { ArsenalTabelaComponent } from './arsenal/arsenal-tabela/arsenal-tabela.
     FormsModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatExpansionModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatTableModule,
