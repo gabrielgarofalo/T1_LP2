@@ -55,9 +55,8 @@ app.delete ('/api/arsenal/:nome', (req, res, next) => {
     })
 });
 
-app.put ('/api/arsenal/alterar', (req, res, next) => {
-    var item = req.body;
-    Arsenal.updateOne( { nome: `${item.nome}` }, { quantidade: `${item.quantidade}` }).then(() => {
+app.put ('/api/arsenal/:nome', (req, res, next) => {
+    Arsenal.updateOne( { nome: `${req.params.nome}` }, { quantidade: `${req.body.quantidade}` }).then(() => {
         Arsenal.find().then((arsenal) => 
         res.status(201).json({mensagem: 'Arsenal Atualizado', arsenal:arsenal})
         )
