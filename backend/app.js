@@ -40,11 +40,11 @@ app.post ('/api/arsenal', (req, res, next) => {
             console.log (arsenal);
             arsenal.save().then(() => {
             Arsenal.find().then((arsenal_atualizado) => {
-                res.status(201).json({mensagem: 'Item inserido no arsenal', arsenal:arsenal_atualizado})
+                res.status(201).json({mensagem: 'Item inserido no arsenal', arsenal:arsenal_atualizado, tipo: 'novo'})
             })
         })} else {
                 Arsenal.find().then((arsenal_atual) => 
-                res.status(201).json({mensagem: 'Item já inserido no arsenal', arsenal:arsenal_atual})
+                res.status(201).json({mensagem: 'Item já inserido no arsenal', arsenal:arsenal_atual, tipo: 'existente'})
                 )
             }
         })
@@ -53,7 +53,7 @@ app.post ('/api/arsenal', (req, res, next) => {
 app.delete ('/api/arsenal/:nome', (req, res, next) => {
     Arsenal.deleteOne( { nome: `${req.params.nome}` }).then(() => {
         Arsenal.find().then((arsenal) => 
-        res.status(201).json({mensagem: 'Arsenal Atualizado', arsenal:arsenal})
+        res.status(201).json({mensagem: 'Item Deletado com Sucesso!', arsenal:arsenal})
         )
     })
 });
@@ -61,7 +61,7 @@ app.delete ('/api/arsenal/:nome', (req, res, next) => {
 app.put ('/api/arsenal/:nome', (req, res, next) => {
     Arsenal.updateOne( { nome: `${req.params.nome}` }, { quantidade: `${req.body.quantidade}` }).then(() => {
         Arsenal.find().then((arsenal) => 
-        res.status(201).json({mensagem: 'Arsenal Atualizado', arsenal:arsenal})
+        res.status(201).json({mensagem: 'Item Atualizado com Sucesso!', arsenal:arsenal})
         )
     })
 });   
@@ -69,10 +69,11 @@ app.put ('/api/arsenal/:nome', (req, res, next) => {
 app.get('/api/arsenal', (req, res, next) => {
     Arsenal.find().then(item => {
         res.status(200).json({
-        mensagem: "Tudo OK",
-        arsenal: item
+        mensagem: "Sucesso ao coletar dados do arsenal!",
+        arsenal: item,
+        tipo: 'sucesso'
         });
-        })
+        }).catch(()=>{res.status(500).json({mensagem: "Erro ao recuperar informações", tipo: "erro"})})
 });
    
 module.exports = app;

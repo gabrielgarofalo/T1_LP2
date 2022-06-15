@@ -16,7 +16,7 @@ export class ArsenalService{
 
     getArsenal(): void {
         this.httpClient.get <{mensagem: string, arsenal:
-       Arsenal[]}>('http://localhost:3000/api/arsenal').subscribe(
+       Arsenal[], tipo: string}>('http://localhost:3000/api/arsenal').subscribe(
         (dados) => {
         this.arsenal = dados.arsenal;
         this.listaArsenalAtualizada.next([...this.arsenal]);
@@ -28,10 +28,12 @@ export class ArsenalService{
         const item: Arsenal = {
             tipo, nome, quantidade
         }
-        this.httpClient.post<{mensagem: string, arsenal: []}> ('http://localhost:3000/api/arsenal',item).subscribe(
+        this.httpClient.post<{mensagem: string, arsenal: [], tipo:string}> ('http://localhost:3000/api/arsenal',item).subscribe(
             (dados) => {
-            this.notifyService.showSuccess(dados.mensagem)
-            
+            if(dados.tipo === 'novo'){
+                this.notifyService.showSuccess(dados.mensagem)}
+            if(dados.tipo === 'existente'){
+                this.notifyService.showWarning(dados.mensagem)}
             console.log(dados)
             console.log(dados.mensagem)
             console.log(dados.arsenal)
@@ -46,6 +48,7 @@ export class ArsenalService{
         console.log(nome)
         this.httpClient.delete<{mensagem: string, arsenal: []}> (`http://localhost:3000/api/arsenal/${nome}`).subscribe(
             (dados) => {
+                this.notifyService.showSuccess(dados.mensagem)
                 this.arsenal = dados.arsenal
                 this.listaArsenalAtualizada.next([...this.arsenal]);          
          }
