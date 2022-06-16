@@ -17,7 +17,7 @@ import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { ArsenalService } from './arsenal/arsenal.service';
 
 import { HttpClientModule} from '@angular/common/http';
-import { ArsenalTabelaComponent, DialogOverviewExampleDialog } from './arsenal/arsenal-tabela/arsenal-tabela.component'
+import { ArsenalTabelaComponent, QuantidadeDialog } from './arsenal/arsenal-tabela/arsenal-tabela.component'
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ToastrModule } from 'ngx-toastr';
@@ -28,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     ArsenalInserirComponent,
     CabecalhoComponent,
     ArsenalTabelaComponent,
-    DialogOverviewExampleDialog
+    QuantidadeDialog
   ],
   imports: [
     BrowserAnimationsModule,

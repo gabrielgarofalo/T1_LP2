@@ -41,29 +41,43 @@ app.post ('/api/arsenal', (req, res, next) => {
             arsenal.save().then(() => {
             Arsenal.find().then((arsenal_atualizado) => {
                 res.status(201).json({mensagem: 'Item inserido no arsenal', arsenal:arsenal_atualizado, tipo: 'novo'})
-            })
+            }).catch((e)=>{
+                console.log(e.message)
+                res.status(500).json({mensagem: "Erro ao inserir informações", tipo: "erro"})})
         })} else {
                 Arsenal.find().then((arsenal_atual) => 
                 res.status(201).json({mensagem: 'Item já inserido no arsenal', arsenal:arsenal_atual, tipo: 'existente'})
-                )
+                ).catch((e)=>{
+                    console.log(e.message)
+                    res.status(500).json({mensagem: "Erro ao recuperar informações", tipo: "erro"})})
             }
-        })
+        }).catch((e)=>{
+            console.log(e.message)
+            res.status(500).json({mensagem: "Erro ao fazer requisição de adicionar informações", tipo: "erro"})})
 });
 
 app.delete ('/api/arsenal/:nome', (req, res, next) => {
     Arsenal.deleteOne( { nome: `${req.params.nome}` }).then(() => {
         Arsenal.find().then((arsenal) => 
-        res.status(201).json({mensagem: 'Item Deletado com Sucesso!', arsenal:arsenal})
-        )
-    })
+        res.status(201).json({mensagem: 'Item Deletado com Sucesso!', arsenal:arsenal, tipo: 'sucesso'})
+        ).catch((e)=>{
+            console.log(e.message)
+            res.status(500).json({mensagem: "Erro ao deletar informações", tipo: "erro"})})
+    }).catch((e)=>{
+        console.log(e.message)
+        res.status(500).json({mensagem: "Erro ao fazer requisição para deletar informações", tipo: "erro"})})
 });
 
 app.put ('/api/arsenal/:nome', (req, res, next) => {
     Arsenal.updateOne( { nome: `${req.params.nome}` }, { quantidade: `${req.body.quantidade}` }).then(() => {
         Arsenal.find().then((arsenal) => 
-        res.status(201).json({mensagem: 'Item Atualizado com Sucesso!', arsenal:arsenal})
-        )
-    })
+        res.status(201).json({mensagem: 'Item Atualizado com Sucesso!', arsenal:arsenal, tipo: 'sucesso'})
+        ).catch((e)=>{
+            console.log(e.message)
+            res.status(500).json({mensagem: "Erro ao atualizar item", tipo: "erro"})})
+    }).catch((e)=>{
+        console.log(e.message)
+        res.status(500).json({mensagem: "Erro ao fazer requisição de atualizar", tipo: "erro"})})
 });   
    
 app.get('/api/arsenal', (req, res, next) => {
@@ -73,7 +87,9 @@ app.get('/api/arsenal', (req, res, next) => {
         arsenal: item,
         tipo: 'sucesso'
         });
-        }).catch(()=>{res.status(500).json({mensagem: "Erro ao recuperar informações", tipo: "erro"})})
+        }).catch((e)=>{
+            console.log(e.message)
+            res.status(500).json({mensagem: "Erro ao recuperar informações", tipo: "erro"})})
 });
    
 module.exports = app;

@@ -34,6 +34,8 @@ export class ArsenalService{
                 this.notifyService.showSuccess(dados.mensagem)}
             if(dados.tipo === 'existente'){
                 this.notifyService.showWarning(dados.mensagem)}
+            if(dados.tipo === 'erro'){
+                this.notifyService.showError(dados.mensagem)}
             console.log(dados)
             console.log(dados.mensagem)
             console.log(dados.arsenal)
@@ -46,9 +48,12 @@ export class ArsenalService{
 
     removerArsenal(nome: string): void{
         console.log(nome)
-        this.httpClient.delete<{mensagem: string, arsenal: []}> (`http://localhost:3000/api/arsenal/${nome}`).subscribe(
+        this.httpClient.delete<{mensagem: string, arsenal: [], tipo: string}> (`http://localhost:3000/api/arsenal/${nome}`).subscribe(
             (dados) => {
-                this.notifyService.showSuccess(dados.mensagem)
+                if(dados.tipo === 'sucesso'){
+                    this.notifyService.showSuccess(dados.mensagem)}
+                if(dados.tipo === 'erro'){
+                    this.notifyService.showError(dados.mensagem)}
                 this.arsenal = dados.arsenal
                 this.listaArsenalAtualizada.next([...this.arsenal]);          
          }
@@ -56,8 +61,12 @@ export class ArsenalService{
     }
 
     atualizarArsenal(nome: string, quantidade:number): void{
-        this.httpClient.put<{mensagem: string, arsenal: []}> (`http://localhost:3000/api/arsenal/${nome}`, {quantidade}).subscribe(
+        this.httpClient.put<{mensagem: string, arsenal: [], tipo: string}> (`http://localhost:3000/api/arsenal/${nome}`, {quantidade}).subscribe(
             (dados) => {
+                if(dados.tipo === 'sucesso'){
+                    this.notifyService.showSuccess(dados.mensagem)}
+                if(dados.tipo === 'erro'){
+                    this.notifyService.showError(dados.mensagem)}
                 this.arsenal = dados.arsenal
                 this.listaArsenalAtualizada.next([...this.arsenal]);          
          }

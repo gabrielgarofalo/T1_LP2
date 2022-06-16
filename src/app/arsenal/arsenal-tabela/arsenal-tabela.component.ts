@@ -70,7 +70,7 @@ export class ArsenalTabelaComponent implements OnInit, OnDestroy {
   }
 
   openDialog(item:Arsenal): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(QuantidadeDialog, {
       width: '250px',
       data: {nome: item.nome, quantidade: item.quantidade},
     });
@@ -84,12 +84,12 @@ export class ArsenalTabelaComponent implements OnInit, OnDestroy {
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
+  selector: 'arsenal-quantidade-dialog',
+  templateUrl: 'arsenal-quantidade-dialog.html',
 })
-export class DialogOverviewExampleDialog {
+export class QuantidadeDialog {
   constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<QuantidadeDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Arsenal,
   ) {}
 
