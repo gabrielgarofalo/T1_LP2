@@ -28,6 +28,9 @@ app.post ('/api/arsenal', (req, res, next) => {
     tipo = item.tipo.toUpperCase().trim()
     nome = item.nome.toUpperCase().trim()
     quantidade = item.quantidade
+    if(Number(quantidade)<=0){
+        return res.status(201).json({mensagem: 'Quantidade Inválida', arsenal:[], tipo: 'inválido'})
+    }
     Arsenal.find({'nome':`${nome}`}).then((list_find) =>
     {
         console.log(list_find)

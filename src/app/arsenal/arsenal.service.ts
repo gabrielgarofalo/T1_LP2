@@ -34,6 +34,9 @@ export class ArsenalService{
                 this.notifyService.showSuccess(dados.mensagem)}
             if(dados.tipo === 'existente'){
                 this.notifyService.showWarning(dados.mensagem)}
+            if(dados.tipo ===  'inválido'){
+                this.notifyService.showError(dados.mensagem)
+            }
             if(dados.tipo === 'erro'){
                 this.notifyService.showError(dados.mensagem)}
             console.log(dados)
